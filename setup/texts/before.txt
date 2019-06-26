@@ -1,7 +1,0 @@
-This is the Desktop version of the vSongBook Application currently available for Android and Windows Phone and soon to be available for iPhone.
-
-Using this application assumes a number of conditions fulfilled by you as the user such as:
-1. You have already installed Microsoft .NET framework 4.5.0 or later on your computer otherwise the software will request you download it before you can use it.
-2. You have used MS Office PowerPoint or Visual Songbook on your computer because this software emulates some behaviours in them.
-3. You know what you expect from this software.
-4. Your computer has at least 40 MB set aside for this software.
