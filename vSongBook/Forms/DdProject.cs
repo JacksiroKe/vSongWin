@@ -11,7 +11,7 @@ namespace vSongBook
         bool isBold = false, hasChorus = false;
         string[] songtemps, songstanzas, versechorus, versecounts;
         string sqlQuery, songtext, fontxt;
-        int fontsize = 0, stanzas = 0, cur_stz = 0, last_stz = 0, fontno = 1;
+        int apptheme = 0, fontsize = 0, stanzas = 0, cur_stz = 0, last_stz = 0, fontno = 1;
         AppDatabase appDB;
         SQLiteDataReader reader;
         private AppFunctions vsbf = new AppFunctions();
@@ -20,6 +20,7 @@ namespace vSongBook
         public DdProject()
         {
             InitializeComponent();
+            apptheme = settings.Theme;
             fontsize = settings.FontSizeProject;
             fontno = vsbf.fontNo(settings.FontTypeProject);
             fontxt = settings.FontTypeProject;
@@ -29,26 +30,183 @@ namespace vSongBook
         private void DdProject_Load(object sender, EventArgs e)
         {
             FontManager();
+            ThemeView(apptheme);
             LoadSingleSong(settings.CurrentSong);
             txtCommandLine.Focus();
         }
 
+        private void ThemeView(int theme)
+        {
+            switch (theme)
+            {
+                case 2:
+                    lblSongTitle.ForeColor = Color.Black;
+                    lblSongLabel.ForeColor = Color.Black;
+                    lblSongno.ForeColor = Color.Black;
+                    lblItem.ForeColor = Color.Black;
+                    lblDetails.ForeColor = Color.Black;
+                    lblVerses.ForeColor = Color.Black;
+                    lblSongText.ForeColor = Color.Black;
+                    lineTop.ForeColor = Color.Black;
+                    lineDown.ForeColor = Color.Black;
+                    BackColor = Color.White;
+                    break;
+
+                case 3:
+                    lblSongTitle.ForeColor = Color.White;
+                    lblSongLabel.ForeColor = Color.White;
+                    lblSongno.ForeColor = Color.White;
+                    lblItem.ForeColor = Color.White;
+                    lblDetails.ForeColor = Color.White;
+                    lblVerses.ForeColor = Color.White;
+                    lblSongText.ForeColor = Color.White;
+                    lineTop.ForeColor = Color.White;
+                    lineDown.ForeColor = Color.White;
+                    BackColor = Color.Blue;
+                    break;
+
+                case 4:
+                    lblSongTitle.ForeColor = Color.Blue;
+                    lblSongLabel.ForeColor = Color.Blue;
+                    lblSongno.ForeColor = Color.Blue;
+                    lblItem.ForeColor = Color.Blue;
+                    lblDetails.ForeColor = Color.Blue;
+                    lblVerses.ForeColor = Color.Blue;
+                    lblSongText.ForeColor = Color.Blue;
+                    lineTop.ForeColor = Color.Blue;
+                    lineDown.ForeColor = Color.Blue;
+                    BackColor = Color.White;
+                    break;
+
+                case 5:
+                    lblSongTitle.ForeColor = Color.White;
+                    lblSongLabel.ForeColor = Color.White;
+                    lblSongno.ForeColor = Color.White;
+                    lblItem.ForeColor = Color.White;
+                    lblDetails.ForeColor = Color.White;
+                    lblVerses.ForeColor = Color.White;
+                    lblSongText.ForeColor = Color.White;
+                    lineTop.ForeColor = Color.White;
+                    lineDown.ForeColor = Color.White;
+                    BackColor = Color.Green;
+                    break;
+
+                case 6:
+                    lblSongTitle.ForeColor = Color.Green;
+                    lblSongLabel.ForeColor = Color.Green;
+                    lblSongno.ForeColor = Color.Green;
+                    lblItem.ForeColor = Color.Green;
+                    lblDetails.ForeColor = Color.Green;
+                    lblVerses.ForeColor = Color.Green;
+                    lblSongText.ForeColor = Color.Green;
+                    lineTop.ForeColor = Color.Green;
+                    lineDown.ForeColor = Color.Green;
+                    BackColor = Color.White;
+                    break;
+
+                case 7:
+                    lblSongTitle.ForeColor = Color.White;
+                    lblSongLabel.ForeColor = Color.White;
+                    lblSongno.ForeColor = Color.White;
+                    lblItem.ForeColor = Color.White;
+                    lblDetails.ForeColor = Color.White;
+                    lblVerses.ForeColor = Color.White;
+                    lblSongText.ForeColor = Color.White;
+                    lineTop.ForeColor = Color.White;
+                    lineDown.ForeColor = Color.White;
+                    BackColor = Color.Orange;
+                    break;
+
+                case 8:
+                    lblSongTitle.ForeColor = Color.Orange;
+                    lblSongLabel.ForeColor = Color.Orange;
+                    lblSongno.ForeColor = Color.Orange;
+                    lblItem.ForeColor = Color.Orange;
+                    lblDetails.ForeColor = Color.Orange;
+                    lblVerses.ForeColor = Color.Orange;
+                    lblSongText.ForeColor = Color.Orange;
+                    lineTop.ForeColor = Color.Orange;
+                    lineDown.ForeColor = Color.Orange;
+                    BackColor = Color.White;
+                    break;
+
+                case 9:
+                    lblSongTitle.ForeColor = Color.White;
+                    lblSongLabel.ForeColor = Color.White;
+                    lblSongno.ForeColor = Color.White;
+                    lblItem.ForeColor = Color.White;
+                    lblDetails.ForeColor = Color.White;
+                    lblVerses.ForeColor = Color.White;
+                    lblSongText.ForeColor = Color.White;
+                    lineTop.ForeColor = Color.White;
+                    lineDown.ForeColor = Color.White;
+                    BackColor = Color.Black;
+                    break;
+
+                case 10:
+                    lblSongTitle.ForeColor = Color.Black;
+                    lblSongLabel.ForeColor = Color.Black;
+                    lblSongno.ForeColor = Color.Black;
+                    lblItem.ForeColor = Color.Black;
+                    lblDetails.ForeColor = Color.Black;
+                    lblVerses.ForeColor = Color.Black;
+                    lblSongText.ForeColor = Color.Black;
+                    lineTop.ForeColor = Color.Black;
+                    lineDown.ForeColor = Color.Black;
+                    BackColor = Color.White;
+                    break;
+
+                case 11:
+                    lblSongTitle.ForeColor = Color.White;
+                    lblSongLabel.ForeColor = Color.White;
+                    lblSongno.ForeColor = Color.White;
+                    lblItem.ForeColor = Color.White;
+                    lblDetails.ForeColor = Color.White;
+                    lblVerses.ForeColor = Color.White;
+                    lblSongText.ForeColor = Color.White;
+                    lineTop.ForeColor = Color.White;
+                    lineDown.ForeColor = Color.White;
+                    BackColor = Color.Black;
+                    break;
+
+                case 12:
+                    lblSongTitle.ForeColor = Color.Black;
+                    lblSongLabel.ForeColor = Color.Black;
+                    lblSongno.ForeColor = Color.Black;
+                    lblItem.ForeColor = Color.Black;
+                    lblDetails.ForeColor = Color.Black;
+                    lblVerses.ForeColor = Color.Black;
+                    lblSongText.ForeColor = Color.Black;
+                    lineTop.ForeColor = Color.Black;
+                    lineDown.ForeColor = Color.Black;
+                    BackColor = Color.White;
+                    break;
+
+                default:
+                    lblSongTitle.ForeColor = Color.White;
+                    lblSongLabel.ForeColor = Color.White;
+                    lblSongno.ForeColor = Color.White;
+                    lblItem.ForeColor = Color.White;
+                    lblDetails.ForeColor = Color.White;
+                    lblVerses.ForeColor = Color.White;
+                    lblSongText.ForeColor = Color.White;
+                    lineTop.ForeColor = Color.White;
+                    lineDown.ForeColor = Color.White;
+                    BackColor = Color.Black;
+                    break;
+
+            }
+        }
+        
         private void FontManager()
         {
-            try { lblSongTitle.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 5, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblSongLabel.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblSongno.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblItem.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblDetails.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblVerses.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblSongText.Font = new Font(fontxt, fontsize, isBold ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
+            lblSongTitle.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 5, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            lblSongLabel.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            lblSongno.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            lblItem.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            lblDetails.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            lblVerses.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral + 3, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            lblSongText.Font = new Font(fontxt, fontsize, isBold ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void tmrMain_Tick(object sender, EventArgs e)
@@ -121,6 +279,7 @@ namespace vSongBook
                 lblSongText.Text = "Oops! Song projection failed due to: " + ex.Message;
             }
         }
+
         private void PreviousStanza()
         {
             try
@@ -258,6 +417,32 @@ namespace vSongBook
                     }
                     break;
 
+                case Keys.M:
+                    if (apptheme >= 0)
+                    {
+                        try
+                        {
+                            apptheme = apptheme - 1;
+                            ThemeView(apptheme);
+                            settings.Theme = apptheme;
+                        }
+                        catch (Exception) { }
+                    }
+                    break;
+
+                case Keys.N:
+                    if (apptheme <= 8)
+                    {
+                        try
+                        {
+                            apptheme = apptheme + 1;
+                            ThemeView(apptheme);
+                            settings.Theme = apptheme;
+                        }
+                        catch (Exception) { }
+                    }
+                    break;
+
                 case Keys.Z:
                     if (fontno >= 0)
                     {
@@ -265,8 +450,7 @@ namespace vSongBook
                         {
                             fontno = fontno - 1;
                             settings.FontTypeProject = vsbf.fonTxt(fontno);
-                            try { lblSongText.Font = new Font(fontxt, fontsize, settings.FontBoldProject ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                            catch (Exception) { }
+                            lblSongText.Font = new Font(fontxt, fontsize, settings.FontBoldProject ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                         }
                         catch (Exception) { }
                     }
@@ -279,13 +463,11 @@ namespace vSongBook
                         {
                             fontno = fontno + 1;
                             settings.FontTypeProject = vsbf.fonTxt(fontno);
-                            try { lblSongText.Font = new Font(fontxt, fontsize, isBold ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                            catch (Exception) { }
+                            lblSongText.Font = new Font(fontxt, fontsize, isBold ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); 
                         }
                         catch (Exception) { }
                     }
                     break;
-
                 case Keys.NumPad1:
                 case Keys.D1:
                     LoadStanza(0);

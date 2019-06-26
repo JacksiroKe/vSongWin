@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DdSongEdit));
-            this.jsFeedback = new JacksiroCtrl.JsFeedback();
+            this.asFeedback = new AnisiControls.AsFeedback();
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.tblLeft = new System.Windows.Forms.TableLayoutPanel();
             this.cmbBooks = new System.Windows.Forms.ComboBox();
@@ -38,9 +38,9 @@
             this.lstSongids = new System.Windows.Forms.ListBox();
             this.tblRight = new System.Windows.Forms.TableLayoutPanel();
             this.tblTop = new System.Windows.Forms.TableLayoutPanel();
-            this.txtSongKey = new JacksiroCtrl.JsTextBox();
+            this.txtSongKey = new AnisiControls.AsTextbox();
             this.lblSongNo = new System.Windows.Forms.Label();
-            this.txtNumber = new JacksiroCtrl.JsTextBox();
+            this.txtNumber = new AnisiControls.AsTextbox();
             this.btnSaveClose = new System.Windows.Forms.Button();
             this.btnSaveOnly = new System.Windows.Forms.Button();
             this.grpSongContent = new System.Windows.Forms.GroupBox();
@@ -50,7 +50,7 @@
             this.ToolStripSong = new System.Windows.Forms.ToolStrip();
             this.tsbtnLast = new System.Windows.Forms.ToolStripButton();
             this.tsbtnNext = new System.Windows.Forms.ToolStripButton();
-            this.txtSongTitle = new JacksiroCtrl.JsTextBox();
+            this.txtSongTitle = new AnisiControls.AsTextbox();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -64,21 +64,21 @@
             this.ToolStripSong.SuspendLayout();
             this.SuspendLayout();
             // 
-            // jsFeedback
+            // asFeedback
             // 
-            this.jsFeedback.BackColor = System.Drawing.Color.LightGreen;
-            this.jsFeedback.Dock = System.Windows.Forms.DockStyle.Top;
-            this.jsFeedback.Font = new System.Drawing.Font("Trebuchet MS", 12F);
-            this.jsFeedback.ForeColor = System.Drawing.Color.Black;
-            this.jsFeedback.Interval = 2500F;
-            this.jsFeedback.IsPositive = true;
-            this.jsFeedback.IsTimed = false;
-            this.jsFeedback.Location = new System.Drawing.Point(0, 0);
-            this.jsFeedback.Name = "jsFeedback";
-            this.jsFeedback.Size = new System.Drawing.Size(983, 50);
-            this.jsFeedback.TabIndex = 2;
-            this.jsFeedback.Text = "vSongBook Feedback";
-            this.jsFeedback.Visible = false;
+            this.asFeedback.BackColor = System.Drawing.Color.LightGreen;
+            this.asFeedback.Dock = System.Windows.Forms.DockStyle.Top;
+            this.asFeedback.Font = new System.Drawing.Font("Trebuchet MS", 12F);
+            this.asFeedback.ForeColor = System.Drawing.Color.Black;
+            this.asFeedback.Interval = 2500F;
+            this.asFeedback.IsPositive = true;
+            this.asFeedback.IsTimed = false;
+            this.asFeedback.Location = new System.Drawing.Point(0, 0);
+            this.asFeedback.Name = "asFeedback";
+            this.asFeedback.Size = new System.Drawing.Size(1000, 50);
+            this.asFeedback.TabIndex = 2;
+            this.asFeedback.Text = "vSongBook Feedback";
+            this.asFeedback.Visible = false;
             // 
             // splitMain
             // 
@@ -94,8 +94,8 @@
             // splitMain.Panel2
             // 
             this.splitMain.Panel2.Controls.Add(this.tblRight);
-            this.splitMain.Size = new System.Drawing.Size(983, 411);
-            this.splitMain.SplitterDistance = 332;
+            this.splitMain.Size = new System.Drawing.Size(1000, 550);
+            this.splitMain.SplitterDistance = 336;
             this.splitMain.TabIndex = 4;
             // 
             // tblLeft
@@ -110,7 +110,7 @@
             this.tblLeft.RowCount = 2;
             this.tblLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tblLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblLeft.Size = new System.Drawing.Size(332, 411);
+            this.tblLeft.Size = new System.Drawing.Size(336, 550);
             this.tblLeft.TabIndex = 0;
             // 
             // cmbBooks
@@ -121,7 +121,7 @@
             this.cmbBooks.FormattingEnabled = true;
             this.cmbBooks.Location = new System.Drawing.Point(3, 3);
             this.cmbBooks.Name = "cmbBooks";
-            this.cmbBooks.Size = new System.Drawing.Size(326, 35);
+            this.cmbBooks.Size = new System.Drawing.Size(330, 35);
             this.cmbBooks.TabIndex = 0;
             this.cmbBooks.SelectedIndexChanged += new System.EventHandler(this.cmbBooks_SelectedIndexChanged);
             // 
@@ -133,7 +133,7 @@
             this.grpSongResults.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpSongResults.Location = new System.Drawing.Point(3, 43);
             this.grpSongResults.Name = "grpSongResults";
-            this.grpSongResults.Size = new System.Drawing.Size(326, 365);
+            this.grpSongResults.Size = new System.Drawing.Size(330, 504);
             this.grpSongResults.TabIndex = 1;
             this.grpSongResults.TabStop = false;
             this.grpSongResults.Text = " 0 Songs for this Book: ";
@@ -146,7 +146,7 @@
             this.lstSongResults.ItemHeight = 22;
             this.lstSongResults.Location = new System.Drawing.Point(3, 19);
             this.lstSongResults.Name = "lstSongResults";
-            this.lstSongResults.Size = new System.Drawing.Size(320, 343);
+            this.lstSongResults.Size = new System.Drawing.Size(324, 482);
             this.lstSongResults.TabIndex = 0;
             this.lstSongResults.SelectedIndexChanged += new System.EventHandler(this.lstSongResults_SelectedIndexChanged);
             // 
@@ -176,7 +176,7 @@
             this.tblRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tblRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblRight.Size = new System.Drawing.Size(647, 411);
+            this.tblRight.Size = new System.Drawing.Size(660, 550);
             this.tblRight.TabIndex = 0;
             // 
             // tblTop
@@ -198,7 +198,7 @@
             this.tblTop.Padding = new System.Windows.Forms.Padding(2);
             this.tblTop.RowCount = 1;
             this.tblTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblTop.Size = new System.Drawing.Size(641, 44);
+            this.tblTop.Size = new System.Drawing.Size(654, 44);
             this.tblTop.TabIndex = 0;
             // 
             // txtSongKey
@@ -255,7 +255,7 @@
             this.btnSaveClose.Location = new System.Drawing.Point(305, 2);
             this.btnSaveClose.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.btnSaveClose.Name = "btnSaveClose";
-            this.btnSaveClose.Size = new System.Drawing.Size(165, 40);
+            this.btnSaveClose.Size = new System.Drawing.Size(172, 40);
             this.btnSaveClose.TabIndex = 11;
             this.btnSaveClose.Text = "Save and &CLOSE";
             this.btnSaveClose.UseVisualStyleBackColor = true;
@@ -265,10 +265,10 @@
             // 
             this.btnSaveOnly.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSaveOnly.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveOnly.Location = new System.Drawing.Point(470, 2);
+            this.btnSaveOnly.Location = new System.Drawing.Point(477, 2);
             this.btnSaveOnly.Margin = new System.Windows.Forms.Padding(0);
             this.btnSaveOnly.Name = "btnSaveOnly";
-            this.btnSaveOnly.Size = new System.Drawing.Size(169, 40);
+            this.btnSaveOnly.Size = new System.Drawing.Size(175, 40);
             this.btnSaveOnly.TabIndex = 12;
             this.btnSaveOnly.Text = "Save &ONLY";
             this.btnSaveOnly.UseVisualStyleBackColor = true;
@@ -283,7 +283,7 @@
             this.grpSongContent.Location = new System.Drawing.Point(3, 98);
             this.grpSongContent.Name = "grpSongContent";
             this.grpSongContent.Padding = new System.Windows.Forms.Padding(10);
-            this.grpSongContent.Size = new System.Drawing.Size(641, 290);
+            this.grpSongContent.Size = new System.Drawing.Size(654, 429);
             this.grpSongContent.TabIndex = 12;
             this.grpSongContent.TabStop = false;
             this.grpSongContent.Text = " Song content goes here: ";
@@ -297,7 +297,7 @@
             this.txtSongContent.Multiline = true;
             this.txtSongContent.Name = "txtSongContent";
             this.txtSongContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSongContent.Size = new System.Drawing.Size(621, 251);
+            this.txtSongContent.Size = new System.Drawing.Size(634, 390);
             this.txtSongContent.TabIndex = 13;
             // 
             // lstBookcodes
@@ -322,7 +322,7 @@
             this.tblExtra.Name = "tblExtra";
             this.tblExtra.RowCount = 1;
             this.tblExtra.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblExtra.Size = new System.Drawing.Size(641, 39);
+            this.tblExtra.Size = new System.Drawing.Size(654, 39);
             this.tblExtra.TabIndex = 14;
             // 
             // ToolStripSong
@@ -334,7 +334,7 @@
             this.ToolStripSong.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbtnLast,
             this.tsbtnNext});
-            this.ToolStripSong.Location = new System.Drawing.Point(541, 0);
+            this.ToolStripSong.Location = new System.Drawing.Point(554, 0);
             this.ToolStripSong.Name = "ToolStripSong";
             this.ToolStripSong.Padding = new System.Windows.Forms.Padding(6, 0, 1, 0);
             this.ToolStripSong.Size = new System.Drawing.Size(100, 39);
@@ -378,7 +378,7 @@
             this.txtSongTitle.Name = "txtSongTitle";
             this.txtSongTitle.Placeholder = "Title of the Song";
             this.txtSongTitle.ShowIcon = false;
-            this.txtSongTitle.Size = new System.Drawing.Size(541, 39);
+            this.txtSongTitle.Size = new System.Drawing.Size(554, 39);
             this.txtSongTitle.TabIndex = 11;
             this.txtSongTitle.Text = "Title of the Song";
             // 
@@ -386,13 +386,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 461);
+            this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.splitMain);
-            this.Controls.Add(this.jsFeedback);
+            this.Controls.Add(this.asFeedback);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DdSongEdit";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Song";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.DdSongEdit_Load);
             this.splitMain.Panel1.ResumeLayout(false);
             this.splitMain.Panel2.ResumeLayout(false);
@@ -413,7 +416,7 @@
         }
 
         #endregion
-        private JacksiroCtrl.JsFeedback jsFeedback;
+        private AnisiControls.AsFeedback asFeedback;
         private System.Windows.Forms.SplitContainer splitMain;
         private System.Windows.Forms.TableLayoutPanel tblLeft;
         private System.Windows.Forms.ComboBox cmbBooks;
@@ -421,9 +424,9 @@
         private System.Windows.Forms.ListBox lstSongResults;
         private System.Windows.Forms.TableLayoutPanel tblRight;
         private System.Windows.Forms.TableLayoutPanel tblTop;
-        private JacksiroCtrl.JsTextBox txtSongKey;
+        private AnisiControls.AsTextbox txtSongKey;
         private System.Windows.Forms.Label lblSongNo;
-        private JacksiroCtrl.JsTextBox txtNumber;
+        private AnisiControls.AsTextbox txtNumber;
         private System.Windows.Forms.Button btnSaveClose;
         private System.Windows.Forms.Button btnSaveOnly;
         private System.Windows.Forms.GroupBox grpSongContent;
@@ -433,7 +436,7 @@
         private System.Windows.Forms.ToolStrip ToolStripSong;
         private System.Windows.Forms.ToolStripButton tsbtnLast;
         private System.Windows.Forms.ToolStripButton tsbtnNext;
-        private JacksiroCtrl.JsTextBox txtSongTitle;
+        private AnisiControls.AsTextbox txtSongTitle;
         private System.Windows.Forms.ListBox lstSongids;
     }
 }

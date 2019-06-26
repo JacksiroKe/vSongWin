@@ -34,13 +34,13 @@ namespace vSongBook
             catch (Exception) { }
         }
 
-        private void loadFeedback(string fbmessage, bool positive = true, bool timed = false, float interval = 1000)
+        private void LoadFeedback(string fbmessage, bool positive = true, bool timed = false, float interval = 1000)
         {
-            jsFeedback.Interval = interval == 0 ? interval : jsFeedback.Interval;
-            jsFeedback.IsPositive = positive;
-            jsFeedback.IsTimed = timed;
-            jsFeedback.Text = fbmessage;
-            jsFeedback.Visible = true;
+            asFeedback.Interval = interval == 0 ? interval : asFeedback.Interval;
+            asFeedback.IsPositive = positive;
+            asFeedback.IsTimed = timed;
+            asFeedback.Text = fbmessage;
+            asFeedback.Visible = true;
         }
 
         private void cmbBooks_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace vSongBook
             }
             catch (Exception ex)
             {
-                loadFeedback("Oops! Sorry, books listing failed: " + ex.Message, false);
+                LoadFeedback("Oops! Sorry, books listing failed: " + ex.Message, false);
             }
         }
 
@@ -108,7 +108,7 @@ namespace vSongBook
             }
             catch (Exception ex)
             {
-                loadFeedback("Oops! Sorry, songs listing failed: " + ex.Message, false);
+                LoadFeedback("Oops! Sorry, songs listing failed: " + ex.Message, false);
             }
         }
 
@@ -131,7 +131,7 @@ namespace vSongBook
             }
             catch (Exception ex)
             {
-                loadFeedback("Oops! Sorry song viewing failed: " + ex.Message, false, true);
+                LoadFeedback("Oops! Sorry song viewing failed: " + ex.Message, false, true);
             }
         }
 
@@ -143,9 +143,9 @@ namespace vSongBook
             if (editsong == "success")
             {
                 appDB.SongsUpdate(lstBookcodes.Text, lstSongResults.Items.Count);
-                loadFeedback(txtSongTitle.Text + " has been updated successfully!", true, true);
+                LoadFeedback(txtSongTitle.Text + " has been updated successfully!", true, true);
             }
-            else loadFeedback("Unable to edit the song: " + editsong, false);
+            else LoadFeedback("Unable to edit the song: " + editsong, false);
             this.Close();
         }
 
@@ -157,9 +157,9 @@ namespace vSongBook
             if (editsong == "success")
             {
                 appDB.SongsUpdate(lstBookcodes.Text, lstSongResults.Items.Count);
-                loadFeedback(txtSongTitle.Text + " has been updated successfully!", true, true);
+                LoadFeedback(txtSongTitle.Text + " has been updated successfully!", true, true);
             }
-            else loadFeedback("Unable to edit the song: " + editsong, false);
+            else LoadFeedback("Unable to edit the song: " + editsong, false);
         }
 
         private void tsbtnLast_Click(object sender, EventArgs e)
@@ -170,7 +170,7 @@ namespace vSongBook
             }
             catch (Exception)
             {
-                loadFeedback("Oops! Sorry, there no song before the current song ...", false, true);
+                LoadFeedback("Oops! Sorry, there no song before the current song ...", false, true);
             }
         }
 
@@ -182,7 +182,7 @@ namespace vSongBook
             }
             catch (Exception)
             {
-                loadFeedback("Oops! Sorry, there no song after the current song ...", false, true);
+                LoadFeedback("Oops! Sorry, there no song after the current song ...", false, true);
             }
         }
 

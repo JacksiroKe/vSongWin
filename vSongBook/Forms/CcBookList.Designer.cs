@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CcBookList));
-            this.jsFeedback = new JacksiroCtrl.JsFeedback();
+            this.asFeedback = new AnisiControls.AsFeedback();
             this.splitMain = new System.Windows.Forms.SplitContainer();
             this.grpBookResults = new System.Windows.Forms.GroupBox();
             this.lstBooks = new System.Windows.Forms.ListBox();
@@ -39,8 +39,8 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.grpNotes = new System.Windows.Forms.GroupBox();
             this.txtNotes = new System.Windows.Forms.TextBox();
-            this.txtBookCode = new JacksiroCtrl.JsTextBox();
-            this.txtBookTitle = new JacksiroCtrl.JsTextBox();
+            this.txtBookCode = new AnisiControls.AsTextbox();
+            this.txtBookTitle = new AnisiControls.AsTextbox();
             this.lblInfo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -66,21 +66,21 @@
             this.tblTop.SuspendLayout();
             this.SuspendLayout();
             // 
-            // jsFeedback
+            // asFeedback
             // 
-            this.jsFeedback.BackColor = System.Drawing.Color.LightGreen;
-            this.jsFeedback.Dock = System.Windows.Forms.DockStyle.Top;
-            this.jsFeedback.Font = new System.Drawing.Font("Trebuchet MS", 12F);
-            this.jsFeedback.ForeColor = System.Drawing.Color.Black;
-            this.jsFeedback.Interval = 2500F;
-            this.jsFeedback.IsPositive = true;
-            this.jsFeedback.IsTimed = false;
-            this.jsFeedback.Location = new System.Drawing.Point(5, 5);
-            this.jsFeedback.Name = "jsFeedback";
-            this.jsFeedback.Size = new System.Drawing.Size(973, 50);
-            this.jsFeedback.TabIndex = 4;
-            this.jsFeedback.Text = "vSongBook Feedback";
-            this.jsFeedback.Visible = false;
+            this.asFeedback.BackColor = System.Drawing.Color.LightGreen;
+            this.asFeedback.Dock = System.Windows.Forms.DockStyle.Top;
+            this.asFeedback.Font = new System.Drawing.Font("Trebuchet MS", 12F);
+            this.asFeedback.ForeColor = System.Drawing.Color.Black;
+            this.asFeedback.Interval = 2500F;
+            this.asFeedback.IsPositive = true;
+            this.asFeedback.IsTimed = false;
+            this.asFeedback.Location = new System.Drawing.Point(5, 5);
+            this.asFeedback.Name = "asFeedback";
+            this.asFeedback.Size = new System.Drawing.Size(973, 50);
+            this.asFeedback.TabIndex = 4;
+            this.asFeedback.Text = "vSongBook Feedback";
+            this.asFeedback.Visible = false;
             // 
             // splitMain
             // 
@@ -375,13 +375,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 491);
+            this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.splitMain);
-            this.Controls.Add(this.jsFeedback);
+            this.Controls.Add(this.asFeedback);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Name = "CcBookList";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Books List";
+            this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.CcBookList_Load);
             this.splitMain.Panel1.ResumeLayout(false);
             this.splitMain.Panel2.ResumeLayout(false);
@@ -404,7 +408,7 @@
         }
 
         #endregion
-        private JacksiroCtrl.JsFeedback jsFeedback;
+        private AnisiControls.AsFeedback asFeedback;
         private System.Windows.Forms.SplitContainer splitMain;
         private System.Windows.Forms.GroupBox grpBookResults;
         private System.Windows.Forms.ListBox lstBooks;
@@ -414,8 +418,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox grpNotes;
         private System.Windows.Forms.TextBox txtNotes;
-        private JacksiroCtrl.JsTextBox txtBookCode;
-        private JacksiroCtrl.JsTextBox txtBookTitle;
+        private AnisiControls.AsTextbox txtBookCode;
+        private AnisiControls.AsTextbox txtBookTitle;
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

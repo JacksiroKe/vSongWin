@@ -20,217 +20,204 @@ namespace vSongBook
         public EeSettings()
         {
             InitializeComponent();
-            btnTabletMode.IsOn = settings.ModeTablet;
-            btnSearchAll.IsOn = settings.SearchAllBooks;
-            cmbLanguage.Text = lastLang = settings.Language;
-            txtAppUser.Text = settings.AppUser;
 
-            lblFontPreview.Text = settings.FontSizePreview.ToString();
-            trkFontPreview.Value = settings.FontSizePreview;
-            cmbFontPreview.SelectedIndex = vsbf.fontNo(settings.FontTypePreview);
-            btnFontPreview.IsOn = settings.FontBoldPreview;
+            BtnTabletMode.IsOn = settings.ModeTablet;
+            BtnSearchAll.IsOn = settings.SearchAllBooks;
+            CmbLanguage.Text = lastLang = settings.Language;
+            TxtAppUser.Text = settings.AppUser;
 
-            lblFontProject.Text = settings.FontSizeProject.ToString();
-            trkFontProject.Value = settings.FontSizeProject;
-            cmbFontProject.SelectedIndex = vsbf.fontNo(settings.FontTypeProject);
-            btnFontProject.IsOn = settings.FontBoldProject;
+            LblFontPreview.Text = settings.FontSizePreview.ToString();
+            TrkFontPreview.Value = settings.FontSizePreview;
+            CmbFontPreview.SelectedIndex = vsbf.fontNo(settings.FontTypePreview);
+            BtnFontPreview.IsOn = settings.FontBoldPreview;
 
-            lblFontGeneral.Text = settings.FontSizeGeneral.ToString();
-            trkFontGeneral.Value = settings.FontSizeGeneral;
-            cmbFontGeneral.SelectedIndex = vsbf.fontNo(settings.FontTypeGeneral);
-            btnFontGeneral.IsOn = settings.FontBoldGeneral;
-            tsbtnPage1.Checked = true;
-            loadLanguages();
+            LblFontProject.Text = settings.FontSizeProject.ToString();
+            TrkFontProject.Value = settings.FontSizeProject;
+            CmbFontProject.SelectedIndex = vsbf.fontNo(settings.FontTypeProject);
+            BtnFontProject.IsOn = settings.FontBoldProject;
+
+            LblFontGeneral.Text = settings.FontSizeGeneral.ToString();
+            TrkFontGeneral.Value = settings.FontSizeGeneral;
+            CmbFontGeneral.SelectedIndex = vsbf.fontNo(settings.FontTypeGeneral);
+            BtnFontGeneral.IsOn = settings.FontBoldGeneral;
+            TsbtnPage1.Checked = true;
+
+            LoadLanguages();
         }
-        public void loadLanguages()
+
+        public void LoadLanguages()
         {
             try
             {
-                cmbLanguage.Items.Clear();
+                CmbLanguage.Items.Clear();
                 AppLanguage applang = new AppLanguage();
                 DataRowCollection dRowCol = applang.langList();
 
                 foreach (DataRow row in dRowCol)
                 {
-                    cmbLanguage.Items.Add(row["name"]);
+                    CmbLanguage.Items.Add(row["name"]);
                 }
             }
             catch (Exception)
             {
-                //loadFeedback(langs.As_Lang(vsb_lang, "error_songs_listing") + " " + ex.Message, false);
+                //LoadFeedback(langs.As_Lang(vsb_lang, "error_songs_listing") + " " + ex.Message, false);
             }
         }
 
         private void EeSettings_Load(object sender, EventArgs e)
         {
-            themeView(settings.Theme);
-            try { grpTabletMode.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblTableModeDesc.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral - 5, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { grpSearchAll.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblSearchAll.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral - 5, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { grpLanguage.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { lblLanguage.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral - 5, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { cmbLanguage.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { grpAppUser.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { txtAppUser.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { grpSampleText.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { grpFontGeneral.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { cmbFontGeneral.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { grpFontPreview.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { cmbFontPreview.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { grpFontProject.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
-            try { cmbFontProject.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-            catch (Exception) { }
+            ThemeView(settings.Theme);
+            GrpTabletMode.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            LblTableModeDesc.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral - 5, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            GrpSearchAll.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            LblSearchAll.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral - 5, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            GrpLanguage.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            LblLanguage.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral - 5, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            CmbLanguage.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            GrpAppUser.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            TxtAppUser.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            GrpSampleText.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            GrpFontGeneral.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            CmbFontGeneral.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            GrpFontPreview.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            CmbFontPreview.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            GrpFontProject.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, settings.FontBoldGeneral ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            CmbFontProject.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
         }
         
-        private void loadFeedback(string fbmessage, bool positive = true, bool timed = false, float interval = 1000)
+        private void LoadFeedback(string fbmessage, bool positive = true, bool timed = false, float interval = 1000)
         {
-            jsFeedback.Interval = interval == 0 ? interval : jsFeedback.Interval;
-            jsFeedback.IsPositive = positive;
-            jsFeedback.IsTimed = timed;
-            jsFeedback.Text = fbmessage;
-            jsFeedback.Visible = true;
+            AsFeedback.Interval = interval == 0 ? interval : AsFeedback.Interval;
+            AsFeedback.IsPositive = positive;
+            AsFeedback.IsTimed = timed;
+            AsFeedback.Text = fbmessage;
+            AsFeedback.Visible = true;
         }
 
-        private void btnTabletMode_Click(object sender, EventArgs e)
+        private void BtnTabletMode_Click(object sender, EventArgs e)
         {
-            settings.ModeTablet = btnTabletMode.IsOn;
+            settings.ModeTablet = BtnTabletMode.IsOn;
         }
 
-        private void grpTabletMode_Enter(object sender, EventArgs e)
+        private void GrpTabletMode_Enter(object sender, EventArgs e)
         {
-            if (btnTabletMode.IsOn) btnTabletMode.IsOn = false;
-            else btnTabletMode.IsOn = true;
-            settings.ModeTablet = btnTabletMode.IsOn;
+            if (BtnTabletMode.IsOn) BtnTabletMode.IsOn = false;
+            else BtnTabletMode.IsOn = true;
+            settings.ModeTablet = BtnTabletMode.IsOn;
         }
         
-        private void btnSearchAll_Click(object sender, EventArgs e)
+        private void BtnSearchAll_Click(object sender, EventArgs e)
         {
-            settings.SearchAllBooks = btnSearchAll.IsOn;
+            settings.SearchAllBooks = BtnSearchAll.IsOn;
         }
 
-        private void grpSearchAll_Enter(object sender, EventArgs e)
+        private void GrpSearchAll_Enter(object sender, EventArgs e)
         {
-            if (btnSearchAll.IsOn) btnSearchAll.IsOn = false;
-            else btnSearchAll.IsOn = true;
-            settings.SearchAllBooks = btnSearchAll.IsOn;
+            if (BtnSearchAll.IsOn) BtnSearchAll.IsOn = false;
+            else BtnSearchAll.IsOn = true;
+            settings.SearchAllBooks = BtnSearchAll.IsOn;
         }
 
-        private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (cmbLanguage.Text == lastLang)
+                if (CmbLanguage.Text == lastLang)
                 {
                     //langChange = 0;
                 }
                 else
                 {
-                    settings.Language = cmbLanguage.Text;
+                    settings.Language = CmbLanguage.Text;
                     //langChange = 1;
-                    loadFeedback("vSongBook will have to restart after you close this tab to implement your new preffered language!", true, false);
+                    LoadFeedback("vSongBook will have to restart after you close this tab to implement your new preffered language!", true, false);
                 }
             }
             catch (Exception) { }
         }
 
-        private void txtAppUser_TextChanged(object sender, EventArgs e)
+        private void TxtAppUser_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (txtAppUser.Text.Length < 100)
+                if (TxtAppUser.Text.Length < 100)
                 {
-                    lblCharacters.Text = 100 - txtAppUser.Text.Length + " characters remaining ...";
+                    LblCharacters.Text = 100 - TxtAppUser.Text.Length + " characters remaining ...";
                 }
                 else
                 {
-                    lblCharacters.Text = "";
+                    LblCharacters.Text = "";
                 }
-                settings.AppUser= txtAppUser.Text.Trim();
+                settings.AppUser= TxtAppUser.Text.Trim();
             }
             catch(Exception) { }
         }
 
-        private void txtAppUser_Click(object sender, EventArgs e)
+        private void TxtAppUser_Click(object sender, EventArgs e)
         {
 
         }
 
 
-        private void pbxFontGeneralSmaller_Click(object sender, EventArgs e)
+        private void PbxFontGeneralSmaller_Click(object sender, EventArgs e)
         {
             try
             {
-                trkFontGeneral.Value = trkFontGeneral.Value - trkFontGeneral.SmallChange;
+                TrkFontGeneral.Value = TrkFontGeneral.Value - TrkFontGeneral.SmallChange;
             }
             catch (Exception) { }
         }
 
-        private void pbxFontGeneralBigger_Click(object sender, EventArgs e)
+        private void PbxFontGeneralBigger_Click(object sender, EventArgs e)
         {
             try
             {
-                trkFontGeneral.Value = trkFontGeneral.Value + trkFontGeneral.SmallChange;
+                TrkFontGeneral.Value = TrkFontGeneral.Value + TrkFontGeneral.SmallChange;
             }
             catch (Exception) { }
         }
 
-        private void trkFontGeneral_Scroll(object sender, EventArgs e)
+        private void TrkFontGeneral_Scroll(object sender, EventArgs e)
         {
             try
             {
-                lblFontGeneral.Text = trkFontGeneral.Value.ToString();
-                settings.FontSizeGeneral = trkFontGeneral.Value;
-                txtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, btnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                LblFontGeneral.Text = TrkFontGeneral.Value.ToString();
+                settings.FontSizeGeneral = TrkFontGeneral.Value;
+                TxtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, BtnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
-        private void trkFontGeneral_ValueChanged(object sender, EventArgs e)
+        private void TrkFontGeneral_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                lblFontGeneral.Text = trkFontGeneral.Value.ToString();
-                settings.FontSizeGeneral = trkFontGeneral.Value;
-                txtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, btnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                LblFontGeneral.Text = TrkFontGeneral.Value.ToString();
+                settings.FontSizeGeneral = TrkFontGeneral.Value;
+                TxtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, BtnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
-        private void cmbFontGeneral_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbFontGeneral_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                settings.FontTypeGeneral = cmbFontGeneral.Text;
-                txtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, btnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                settings.FontTypeGeneral = CmbFontGeneral.Text;
+                TxtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, BtnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
-        private void lblBoldGeneral_Click(object sender, EventArgs e)
+        private void LblBoldGeneral_Click(object sender, EventArgs e)
         {
             try
             {
-                if (btnFontGeneral.IsOn) btnFontGeneral.IsOn = false;
-                else btnFontGeneral.IsOn = true;
-                settings.FontBoldGeneral = btnFontGeneral.IsOn;
-                txtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, btnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                if (BtnFontGeneral.IsOn) BtnFontGeneral.IsOn = false;
+                else BtnFontGeneral.IsOn = true;
+                settings.FontBoldGeneral = BtnFontGeneral.IsOn;
+                TxtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, BtnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
@@ -238,116 +225,116 @@ namespace vSongBook
         {
             try
             {
-                settings.FontBoldGeneral = btnFontGeneral.IsOn;
-                txtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, btnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                settings.FontBoldGeneral = BtnFontGeneral.IsOn;
+                TxtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, BtnFontGeneral.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
 
-        private void pbxFontPreviewSmaller_Click(object sender, EventArgs e)
+        private void PbxFontPreviewSmaller_Click(object sender, EventArgs e)
         {
             try
             {
-                trkFontPreview.Value = trkFontPreview.Value - trkFontPreview.SmallChange;
+                TrkFontPreview.Value = TrkFontPreview.Value - TrkFontPreview.SmallChange;
             }
             catch (Exception) { }
         }
 
-        private void pbxFontPreviewBigger_Click(object sender, EventArgs e)
+        private void PbxFontPreviewBigger_Click(object sender, EventArgs e)
         {
             try
             {
-                trkFontPreview.Value = trkFontPreview.Value + trkFontPreview.SmallChange;
+                TrkFontPreview.Value = TrkFontPreview.Value + TrkFontPreview.SmallChange;
             }
             catch (Exception) { }
         }
 
-        private void trkFontPreview_Scroll(object sender, EventArgs e)
+        private void TrkFontPreview_Scroll(object sender, EventArgs e)
         {
             try
             {
-                lblFontPreview.Text = trkFontPreview.Value.ToString();
-                settings.FontSizePreview = trkFontPreview.Value;
-                txtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, btnFontPreview.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                LblFontPreview.Text = TrkFontPreview.Value.ToString();
+                settings.FontSizePreview = TrkFontPreview.Value;
+                TxtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, BtnFontPreview.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
-        private void trkFontPreview_ValueChanged(object sender, EventArgs e)
+        private void TrkFontPreview_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                lblFontPreview.Text = trkFontPreview.Value.ToString();
-                settings.FontSizePreview = trkFontPreview.Value;
-                txtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, btnFontPreview.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                LblFontPreview.Text = TrkFontPreview.Value.ToString();
+                settings.FontSizePreview = TrkFontPreview.Value;
+                TxtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, BtnFontPreview.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
-        private void cmbFontPreview_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbFontPreview_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void lblBoldPreview_Click(object sender, EventArgs e)
+        private void LblBoldPreview_Click(object sender, EventArgs e)
         {
             try
             {
-                if (btnFontPreview.IsOn) btnFontPreview.IsOn = false;
-                else btnFontPreview.IsOn = true;
-                settings.FontBoldPreview = btnFontPreview.IsOn;
-                txtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, btnFontPreview.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                if (BtnFontPreview.IsOn) BtnFontPreview.IsOn = false;
+                else BtnFontPreview.IsOn = true;
+                settings.FontBoldPreview = BtnFontPreview.IsOn;
+                TxtSampleText.Font = new Font(settings.FontTypePreview, settings.FontSizePreview, BtnFontPreview.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
-        private void pbxFontProjectSmaller_Click(object sender, EventArgs e)
+        private void PbxFontProjectSmaller_Click(object sender, EventArgs e)
         {
             try
             {
-                trkFontProject.Value = trkFontProject.Value - trkFontProject.SmallChange;
+                TrkFontProject.Value = TrkFontProject.Value - TrkFontProject.SmallChange;
             }
             catch (Exception) { }
         }
 
-        private void pbxFontProjectBigger_Click(object sender, EventArgs e)
+        private void PbxFontProjectBigger_Click(object sender, EventArgs e)
         {
             try
             {
-                trkFontProject.Value = trkFontProject.Value + trkFontProject.SmallChange;
+                TrkFontProject.Value = TrkFontProject.Value + TrkFontProject.SmallChange;
             }
             catch (Exception) { }
         }
 
-        private void trkFontProject_Scroll(object sender, EventArgs e)
+        private void TrkFontProject_Scroll(object sender, EventArgs e)
         {
             try
             {
-                lblFontProject.Text = trkFontProject.Value.ToString();
-                settings.FontSizeProject = trkFontProject.Value;
-                txtSampleText.Font = new Font(settings.FontTypeProject, settings.FontSizeProject, btnFontProject.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                LblFontProject.Text = TrkFontProject.Value.ToString();
+                settings.FontSizeProject = TrkFontProject.Value;
+                TxtSampleText.Font = new Font(settings.FontTypeProject, settings.FontSizeProject, BtnFontProject.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
-        private void trkFontProject_ValueChanged(object sender, EventArgs e)
+        private void TrkFontProject_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                lblFontProject.Text = trkFontProject.Value.ToString();
-                settings.FontSizeProject = trkFontProject.Value;
-                txtSampleText.Font = new Font(settings.FontTypeProject, settings.FontSizeProject, btnFontProject.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                LblFontProject.Text = TrkFontProject.Value.ToString();
+                settings.FontSizeProject = TrkFontProject.Value;
+                TxtSampleText.Font = new Font(settings.FontTypeProject, settings.FontSizeProject, BtnFontProject.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
-        private void cmbFontProject_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbFontProject_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                settings.FontTypeProject = cmbFontProject.Text;
-                txtSampleText.Font = new Font(settings.FontTypeProject, settings.FontSizeProject, btnFontProject.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                settings.FontTypeProject = CmbFontProject.Text;
+                TxtSampleText.Font = new Font(settings.FontTypeProject, settings.FontSizeProject, BtnFontProject.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
@@ -356,779 +343,643 @@ namespace vSongBook
         {
             try
             {
-                settings.FontBoldProject = btnFontProject.IsOn;
-                txtSampleText.Font = new Font(settings.FontTypeProject, settings.FontSizeProject, btnFontProject.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                settings.FontBoldProject = BtnFontProject.IsOn;
+                TxtSampleText.Font = new Font(settings.FontTypeProject, settings.FontSizeProject, BtnFontProject.IsOn ? FontStyle.Bold : FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             }
             catch (Exception) { }
         }
 
 
-        private void btnTheme1_Click(object sender, EventArgs e)
+        private void BtnTheme1_Click(object sender, EventArgs e)
         {
-            themeView(1);
+            ThemeView(1);
             settings.Theme = 1;
         }
 
-        private void btnTheme2_Click(object sender, EventArgs e)
+        private void BtnTheme2_Click(object sender, EventArgs e)
         {
-            themeView(2);
+            ThemeView(2);
             settings.Theme = 2;
         }
 
-        private void btnTheme3_Click(object sender, EventArgs e)
+        private void BtnTheme3_Click(object sender, EventArgs e)
         {
-            themeView(3);
+            ThemeView(3);
             settings.Theme = 3;
         }
 
-        private void btnTheme4_Click(object sender, EventArgs e)
+        private void BtnTheme4_Click(object sender, EventArgs e)
         {
-            themeView(4);
+            ThemeView(4);
             settings.Theme = 4;
         }
 
-        private void btnTheme5_Click(object sender, EventArgs e)
+        private void BtnTheme5_Click(object sender, EventArgs e)
         {
-            themeView(5);
+            ThemeView(5);
             settings.Theme = 5;
         }
 
-        private void btnTheme6_Click(object sender, EventArgs e)
+        private void BtnTheme6_Click(object sender, EventArgs e)
         {
-            themeView(6);
+            ThemeView(6);
             settings.Theme = 6;
         }
 
-        private void btnTheme7_Click(object sender, EventArgs e)
+        private void BtnTheme7_Click(object sender, EventArgs e)
         {
-            themeView(7);
+            ThemeView(7);
             settings.Theme = 7;
         }
 
-        private void btnTheme8_Click(object sender, EventArgs e)
+        private void BtnTheme8_Click(object sender, EventArgs e)
         {
-            themeView(8);
+            ThemeView(8);
             settings.Theme = 8;
         }
 
-        private void btnTheme9_Click(object sender, EventArgs e)
+        private void BtnTheme9_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnTheme10_Click(object sender, EventArgs e)
+        private void BtnTheme10_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnTheme11_Click(object sender, EventArgs e)
+        private void BtnTheme11_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnTheme12_Click(object sender, EventArgs e)
+        private void BtnTheme12_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void themeView(int theme)
+
+        private void ThemeView(int theme)
         {
             switch (theme)
             {
                 case 2:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.OrangeRed;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.OrangeRed;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 95;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 90;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 3:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.OrangeRed;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 95;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.OrangeRed;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 90;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 4:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.OrangeRed;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 95;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.OrangeRed;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 90;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 5:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.OrangeRed;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 95;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.OrangeRed;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 90;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 6:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.OrangeRed;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 95;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.OrangeRed;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 90;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 7:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.OrangeRed;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 95;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.OrangeRed;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 90;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 8:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.OrangeRed;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 95;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.OrangeRed;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 90;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 9:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.OrangeRed;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 95;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.OrangeRed;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 90;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 10:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.OrangeRed;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 95;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.OrangeRed;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 90;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 11:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.OrangeRed;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 95;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 95;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.OrangeRed;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 90;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
                 case 12:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.Black;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.OrangeRed;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 5;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 95;
+                    GrpTheme1.ForeColor = Color.Black;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.OrangeRed;
+
+                    BtnTheme1.Radius = 5;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 90;
 
                     break;
+
                 default:
-                    try { grpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    try { grpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0))); }
-                    catch (Exception) { }
-                    
-                    grpTheme1.ForeColor = Color.OrangeRed;
-                    grpTheme2.ForeColor = Color.Black;
-                    grpTheme3.ForeColor = Color.Black;
-                    grpTheme4.ForeColor = Color.Black;
-                    grpTheme5.ForeColor = Color.Black;
-                    grpTheme6.ForeColor = Color.Black;
-                    grpTheme7.ForeColor = Color.Black;
-                    grpTheme8.ForeColor = Color.Black;
-                    grpTheme9.ForeColor = Color.Black;
-                    grpTheme10.ForeColor = Color.Black;
-                    grpTheme11.ForeColor = Color.Black;
-                    grpTheme12.ForeColor = Color.Black;
+                    GrpTheme1.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme2.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme3.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme4.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme5.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme6.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme7.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme8.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme9.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme10.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme11.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    GrpTheme12.Font = new Font(settings.FontTypeGeneral, settings.FontSizeGeneral, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
-                    btnTheme1.Radius = 95;
-                    btnTheme2.Radius = 5;
-                    btnTheme3.Radius = 5;
-                    btnTheme4.Radius = 5;
-                    btnTheme5.Radius = 5;
-                    btnTheme6.Radius = 5;
-                    btnTheme7.Radius = 5;
-                    btnTheme8.Radius = 5;
-                    btnTheme9.Radius = 5;
-                    btnTheme10.Radius = 5;
-                    btnTheme11.Radius = 5;
-                    btnTheme12.Radius = 5;
+                    GrpTheme1.ForeColor = Color.OrangeRed;
+                    GrpTheme2.ForeColor = Color.Black;
+                    GrpTheme3.ForeColor = Color.Black;
+                    GrpTheme4.ForeColor = Color.Black;
+                    GrpTheme5.ForeColor = Color.Black;
+                    GrpTheme6.ForeColor = Color.Black;
+                    GrpTheme7.ForeColor = Color.Black;
+                    GrpTheme8.ForeColor = Color.Black;
+                    GrpTheme9.ForeColor = Color.Black;
+                    GrpTheme10.ForeColor = Color.Black;
+                    GrpTheme11.ForeColor = Color.Black;
+                    GrpTheme12.ForeColor = Color.Black;
+
+                    BtnTheme1.Radius = 90;
+                    BtnTheme2.Radius = 5;
+                    BtnTheme3.Radius = 5;
+                    BtnTheme4.Radius = 5;
+                    BtnTheme5.Radius = 5;
+                    BtnTheme6.Radius = 5;
+                    BtnTheme7.Radius = 5;
+                    BtnTheme8.Radius = 5;
+                    BtnTheme9.Radius = 5;
+                    BtnTheme10.Radius = 5;
+                    BtnTheme11.Radius = 5;
+                    BtnTheme12.Radius = 5;
 
                     break;
+
             }
         }
 
-
-        private void tsbtnPage1_Click(object sender, EventArgs e)
+        private void TsbtnPage1_Click(object sender, EventArgs e)
         {
-            tsbtnPage1.Checked = true;
-            tsbtnPage2.Checked = false;
-            tsbtnPage3.Checked = false;
-            tsbtnPage4.Checked = false;
+            TsbtnPage1.Checked = true;
+            TsbtnPage2.Checked = false;
+            TsbtnPage3.Checked = false;
+            TsbtnPage4.Checked = false;
 
-            settingsPage1.Visible = true;
-            settingsPage2.Visible = false;
-            settingsPage3.Visible = false;
+            SettingsPage1.Visible = true;
+            SettingsPage2.Visible = false;
+            SettingsPage3.Visible = false;
         }
 
-        private void tsbtnPage2_Click(object sender, EventArgs e)
+        private void TsbtnPage2_Click(object sender, EventArgs e)
         {
-            tsbtnPage1.Checked = false;
-            tsbtnPage2.Checked = true;
-            tsbtnPage3.Checked = false;
-            tsbtnPage4.Checked = false;
+            TsbtnPage1.Checked = false;
+            TsbtnPage2.Checked = true;
+            TsbtnPage3.Checked = false;
+            TsbtnPage4.Checked = false;
 
-            settingsPage1.Visible = false;
-            settingsPage2.Visible = true;
-            settingsPage3.Visible = false;
-
-        }
-
-        private void tsbtnPage3_Click(object sender, EventArgs e)
-        {
-            tsbtnPage1.Checked = false;
-            tsbtnPage2.Checked = false;
-            tsbtnPage3.Checked = true;
-            tsbtnPage4.Checked = false;
-
-            settingsPage1.Visible = false;
-            settingsPage2.Visible = false;
-            settingsPage3.Visible = true;
-        }
-
-        private void tsbtnPage4_Click(object sender, EventArgs e)
-        {
-            tsbtnPage1.Checked = false;
-            tsbtnPage2.Checked = false;
-            tsbtnPage3.Checked = false;
-            tsbtnPage4.Checked = true;
-
-            settingsPage1.Visible = false;
-            settingsPage1.Visible = false;
-            settingsPage1.Visible = false;
+            SettingsPage1.Visible = false;
+            SettingsPage2.Visible = true;
+            SettingsPage3.Visible = false;
 
         }
 
-        private void EeSettings_FormClosing(object sender, FormClosingEventArgs e)
+        private void TsbtnPage3_Click(object sender, EventArgs e)
         {
+            TsbtnPage1.Checked = false;
+            TsbtnPage2.Checked = false;
+            TsbtnPage3.Checked = true;
+            TsbtnPage4.Checked = false;
+
+            SettingsPage1.Visible = false;
+            SettingsPage2.Visible = false;
+            SettingsPage3.Visible = true;
+        }
+
+        private void TsbtnPage4_Click(object sender, EventArgs e)
+        {
+            TsbtnPage1.Checked = false;
+            TsbtnPage2.Checked = false;
+            TsbtnPage3.Checked = false;
+            TsbtnPage4.Checked = true;
+
+            SettingsPage1.Visible = true;
+            SettingsPage2.Visible = false;
+            SettingsPage3.Visible = false;
 
         }
+
     }
 }

@@ -24,13 +24,13 @@ namespace vSongBook
             loadBooks();
         }
 
-        private void loadFeedback(string fbmessage, bool positive = true, bool timed = false, float interval = 1000)
+        private void LoadFeedback(string fbmessage, bool positive = true, bool timed = false, float interval = 1000)
         {
-            jsFeedback.Interval = interval == 0 ? interval : jsFeedback.Interval;
-            jsFeedback.IsPositive = positive;
-            jsFeedback.IsTimed = timed;
-            jsFeedback.Text = fbmessage;
-            jsFeedback.Visible = true;
+            asFeedback.Interval = interval == 0 ? interval : asFeedback.Interval;
+            asFeedback.IsPositive = positive;
+            asFeedback.IsTimed = timed;
+            asFeedback.Text = fbmessage;
+            asFeedback.Visible = true;
         }
 
         public void loadBooks()
@@ -54,7 +54,7 @@ namespace vSongBook
             }
             catch (Exception ex)
             {
-                loadFeedback("Oops! Sorry, books listing failed: " + ex.Message, false);
+                LoadFeedback("Oops! Sorry, books listing failed: " + ex.Message, false);
             }
         }
         
@@ -87,7 +87,7 @@ namespace vSongBook
             }
             catch (Exception ex)
             {
-                loadFeedback("Oops! Sorry book viewing failed: " + ex.Message, false, true);
+                LoadFeedback("Oops! Sorry book viewing failed: " + ex.Message, false, true);
             }
         }
         
@@ -111,11 +111,11 @@ namespace vSongBook
             string newbook = appDB.AddNewBook(txtBookTitle.Text, txtBookCode.Text, txtNotes.Text);
             if (newbook == "success")
             {
-                loadFeedback("A new book " + txtBookTitle.Text + "has been added successfully!", true, true);
+                LoadFeedback("A new book " + txtBookTitle.Text + "has been added successfully!", true, true);
                 loadBooks();
                 clearFields();
             }
-            else loadFeedback("Unable to add a book: " + newbook, false);
+            else LoadFeedback("Unable to add a book: " + newbook, false);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -124,16 +124,16 @@ namespace vSongBook
             string editbook = appDB.EditBook(lstBookids.Text, txtBookTitle.Text, txtBookCode.Text, txtNotes.Text);
             if (editbook == "success")
             {
-                loadFeedback(txtBookTitle.Text + " has been updated successfully!", true, true);
+                LoadFeedback(txtBookTitle.Text + " has been updated successfully!", true, true);
                 loadBooks();
             }
-            else loadFeedback("Unable to edit a book: " + editbook, false);
+            else LoadFeedback("Unable to edit a book: " + editbook, false);
             loadBooks();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            loadFeedback("Are you sure you want to delete this book?", true);
+            LoadFeedback("Are you sure you want to delete this book?", true);
             loadBooks();
         }
 

@@ -6,9 +6,9 @@ namespace vSongBook
 {
     class AppSettings
     {
-        SQLiteConnection setConn;
-        SQLiteCommand setCmd;
-        SQLiteDataReader setReader;
+        SQLiteConnection SqlConn;
+        SQLiteCommand SqlCmd;
+        SQLiteDataReader SqlReader;
 
 
         // Database key names of our settings
@@ -72,7 +72,8 @@ namespace vSongBook
             try
             {
                 // Get the settings for this application.
-                setConn = new SQLiteConnection("Data Source=db\\vSongBook.db;New=False;Version=3");
+                SqlConn = new SQLiteConnection("Data Source=Data\\Settings.db;New=False;Version=3");
+                SqlConn.Open();
             }
             catch (Exception e)
             {
@@ -95,11 +96,11 @@ namespace vSongBook
         public bool SetCheck(string key)
         {
             bool keyexists = false;
-            setConn.Open();
-            setCmd = new SQLiteCommand("SELECT settingid FROM settings WHERE title='" + key + "' LIMIT 1", setConn);
-            setReader = setCmd.ExecuteReader();
-            if (setReader.Read()) keyexists = true;
-            setConn.Close();
+            //SqlConn.Open();
+            SqlCmd = new SQLiteCommand("SELECT settingid FROM settings WHERE title='" + key + "' LIMIT 1", SqlConn);
+            SqlReader = SqlCmd.ExecuteReader();
+            if (SqlReader.Read()) keyexists = true;
+            //SqlConn.Close();
             return keyexists;
         }
 
@@ -109,14 +110,14 @@ namespace vSongBook
         public string GetValue(string key)
         {
             string settvalue = "";
-            setConn.Open();
-            setCmd = new SQLiteCommand("SELECT content FROM settings WHERE title='" + key + "' LIMIT 1", setConn);
-            setReader = setCmd.ExecuteReader();
-            while (setReader.Read())
+            //SqlConn.Open();
+            SqlCmd = new SQLiteCommand("SELECT content FROM settings WHERE title='" + key + "' LIMIT 1", SqlConn);
+            SqlReader = SqlCmd.ExecuteReader();
+            while (SqlReader.Read())
             {
-                settvalue = setReader["content"].ToString();
+                settvalue = SqlReader["content"].ToString();
             }
-            setConn.Close();
+            //SqlConn.Close();
             return settvalue;
         }
 
@@ -125,12 +126,12 @@ namespace vSongBook
         /// </summary>
         public void SetValue(string Key, string Value)
         {
-            setConn.Open();
+            //SqlConn.Open();
             string sqlString = "UPDATE settings SET content='" + Value + "', updated='" +
                 Todate() + "' WHERE title='" + Key + "'";
-            setCmd = new SQLiteCommand(sqlString, setConn);
-            setCmd.ExecuteNonQuery();
-            setConn.Close();
+            SqlCmd = new SQLiteCommand(sqlString, SqlConn);
+            SqlCmd.ExecuteNonQuery();
+            //SqlConn.Close();
         }
 
         /// <summary>
@@ -138,11 +139,11 @@ namespace vSongBook
         /// </summary>
         public void SetNew(string Key, Object Value)
         {
-            setConn.Open();
-            setCmd = new SQLiteCommand("INSERT INTO settings (title, content, created) VALUES('" +
-                Key + "', '" + Value + "', '" + Todate() + "')", setConn);
-            setCmd.ExecuteNonQuery();
-            setConn.Close();
+            //SqlConn.Open();
+            SqlCmd = new SQLiteCommand("INSERT INTO settings (title, content, created) VALUES('" +
+                Key + "', '" + Value + "', '" + Todate() + "')", SqlConn);
+            SqlCmd.ExecuteNonQuery();
+            //SqlConn.Close();
         }
 
         /// <summary>

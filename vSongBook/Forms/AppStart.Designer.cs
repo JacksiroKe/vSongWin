@@ -48,10 +48,10 @@
             this.tmrTimer6 = new System.Windows.Forms.Timer(this.components);
             this.lblLoaded = new System.Windows.Forms.Label();
             this.grpJustaMinute = new System.Windows.Forms.GroupBox();
-            this.btnDone = new JacksiroCtrl.JsButton();
-            this.btnClose = new JacksiroCtrl.JsButton();
+            this.btnDone = new AnisiControls.AsButton();
+            this.btnClose = new AnisiControls.AsButton();
             this.lblYourName = new System.Windows.Forms.Label();
-            this.txtAppUser = new JacksiroCtrl.JsTextBox();
+            this.txtAppUser = new AnisiControls.AsTextbox();
             this.lblCharacters = new System.Windows.Forms.Label();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
@@ -573,10 +573,10 @@
         private System.Windows.Forms.TableLayoutPanel tblInfo;
         private System.Windows.Forms.Label lblAppUser;
         private System.Windows.Forms.Label lblCopyright;
-        private JacksiroCtrl.JsButton btnClose;
-        private JacksiroCtrl.JsButton btnDone;
+        private AnisiControls.AsButton btnClose;
+        private AnisiControls.AsButton btnDone;
         private System.Windows.Forms.Label lblYourName;
-        private JacksiroCtrl.JsTextBox txtAppUser;
+        private AnisiControls.AsTextbox txtAppUser;
         private System.Windows.Forms.Label lblCharacters;
         private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.ComboBox cmbLanguage;

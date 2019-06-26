@@ -16,7 +16,7 @@ namespace vSongBook
         {
             return new TitleBarTab(this)
             {
-                Content = new CcSongView { Text = "Song Search " + (AppStart.tabbedApp.Tabs.Count + 1) }
+                Content = new AaSongBook { Text = "vSongBook Search " } // + (AppStart.tabbedApp.Tabs.Count + 1) }
             };
         }
     }

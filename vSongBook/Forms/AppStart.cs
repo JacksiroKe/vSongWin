@@ -41,7 +41,7 @@ namespace vSongBook
             }
             catch (Exception)
             {
-                //loadFeedback(langs.As_Lang(vsb_lang, "error_songs_listing") + " " + ex.Message, false);
+                //LoadFeedback(langs.As_Lang(vsb_lang, "error_songs_listing") + " " + ex.Message, false);
             }
         }
 
@@ -238,7 +238,7 @@ namespace vSongBook
             }*/
             tabbedApp.Tabs.Add(new TitleBarTab(tabbedApp)
             {
-                Content = new CcSongView { Text = "Song Search 1" }
+                Content = new AaSongBook { Text = "Song Search 1" }
             });
             tabbedApp.SelectedTabIndex = 0;
 

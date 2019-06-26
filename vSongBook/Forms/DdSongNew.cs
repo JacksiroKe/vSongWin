@@ -32,13 +32,13 @@ namespace vSongBook
             catch (Exception) { }
         }
 
-        private void loadFeedback(string fbmessage, bool positive = true, bool timed = false, float interval = 1000)
+        private void LoadFeedback(string fbmessage, bool positive = true, bool timed = false, float interval = 1000)
         {
-            jsFeedback.Interval = interval == 0 ? interval : jsFeedback.Interval;
-            jsFeedback.IsPositive = positive;
-            jsFeedback.IsTimed = timed;
-            jsFeedback.Text = fbmessage;
-            jsFeedback.Visible = true;
+            asFeedback.Interval = interval == 0 ? interval : asFeedback.Interval;
+            asFeedback.IsPositive = positive;
+            asFeedback.IsTimed = timed;
+            asFeedback.Text = fbmessage;
+            asFeedback.Visible = true;
         }
 
         public void loadBooks()
@@ -61,7 +61,7 @@ namespace vSongBook
             }
             catch (Exception ex)
             {
-                loadFeedback("Oops! Sorry books listing failed: " + ex.Message, false, true);
+                LoadFeedback("Oops! Sorry books listing failed: " + ex.Message, false, true);
             }
         }
 
@@ -87,7 +87,7 @@ namespace vSongBook
             }
             catch (Exception ex)
             {
-               loadFeedback("Oops! Sorry song listing failed: " + ex.Message, false, true);
+               LoadFeedback("Oops! Sorry song listing failed: " + ex.Message, false, true);
             }
         }
         
@@ -108,7 +108,7 @@ namespace vSongBook
             //string newsong = appDB.NewSong(lstBookcodes.Text, txtNumber.Text, txtSongTitle.Text, txtSongContent.Text, txtSongKey.Text, "", "");
             if (newsong == "success")
             {
-                loadFeedback(txtSongTitle.Text + " has been added successfully!", true, true);
+                LoadFeedback(txtSongTitle.Text + " has been added successfully!", true, true);
                 loadBooks();
                 txtNumber.box.Clear();
                 txtSongKey.box.Clear();
@@ -116,7 +116,7 @@ namespace vSongBook
                 txtSongContent.Clear();
                 Close();
             }
-            else loadFeedback("Unable to add a song: " + newsong, false);
+            else LoadFeedback("Unable to add a song: " + newsong, false);
         }
 
         private void btnSaveAdd_Click(object sender, EventArgs e)
@@ -127,7 +127,7 @@ namespace vSongBook
                 txtSongKey.Text, "", "");
             if (newsong == "success")
             {
-                loadFeedback(txtSongTitle.Text + " has been added successfully!", true, true);
+                LoadFeedback(txtSongTitle.Text + " has been added successfully!", true, true);
                 loadBooks();
                 cmbBooks.SelectedIndex = selectedbook;
                 txtNumber.box.Clear();
@@ -135,7 +135,7 @@ namespace vSongBook
                 txtSongTitle.box.Clear();
                 txtSongContent.Clear();
             }
-            else loadFeedback("Unable to add a song: " + newsong, false);            
+            else LoadFeedback("Unable to add a song: " + newsong, false);            
         }
 
     }

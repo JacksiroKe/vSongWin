@@ -7,16 +7,17 @@ namespace vSongBook
 {
     class AppLanguage
     {
-        SQLiteConnection setConn;
-        SQLiteCommand setCmd;
-        SQLiteDataReader setReader;
+        SQLiteConnection SqlConn;
+        SQLiteCommand SqlCmd;
+        SQLiteDataReader SqlReader;
 
         public AppLanguage()
         {
             try
             {
                 // Get the settings for this application.
-                setConn = new SQLiteConnection("Data Source=db\\Language.db;New=False;Version=3");
+                SqlConn = new SQLiteConnection("Data Source=Data\\Language.db;New=False;Version=3");
+                SqlConn.Open();
             }
             catch (Exception e)
             {
@@ -25,24 +26,24 @@ namespace vSongBook
         }
         public DataRowCollection langList()
         {
-            DataSet ds = new DataSet();
-            string connString = String.Format("Data Source={0};New=False;Version=3", "ad\\Language.db");
-            SQLiteConnection sqlconn = new SQLiteConnection(connString);
-            sqlconn.Open();
-            SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter("SELECT name FROM sqlite_master WHERE type='table';", sqlconn);
-            dataAdapter.Fill(ds);
-            DataRowCollection dataRowCol = ds.Tables[0].Rows;            
-            sqlconn.Close();
+            DataSet DtSt = new DataSet();
+            string connString = String.Format("Data Source={0};New=False;Version=3", "Data\\Language.db");
+            SQLiteConnection SqlConn = new SQLiteConnection(connString);
+            //SqlConn.Open();
+            SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter("SELECT name FROM sqlite_master WHERE type='table';", SqlConn);
+            dataAdapter.Fill(DtSt);
+            DataRowCollection dataRowCol = DtSt.Tables[0].Rows;            
+            //SqlConn.Close();
             return dataRowCol;
         }
         public bool setCheck(string Language, string Key)
         {
             bool keyexists = false;
-            setConn.Open();
-            setCmd = new SQLiteCommand("SELECT stringid FROM " + Language + " WHERE title='" + Key + "' LIMIT 1", setConn);
-            setReader = setCmd.ExecuteReader();
-            if (setReader.Read()) keyexists = true;
-            setConn.Close();
+            //SqlConn.Open();
+            SqlCmd = new SQLiteCommand("SELECT stringid FROM " + Language + " WHERE title='" + Key + "' LIMIT 1", SqlConn);
+            SqlReader = SqlCmd.ExecuteReader();
+            if (SqlReader.Read()) keyexists = true;
+            //SqlConn.Close();
             return keyexists;
         }
 
@@ -52,14 +53,14 @@ namespace vSongBook
         public string getValue(string Language, string Key)
         {
             string settvalue = "";
-            setConn.Open();
-            setCmd = new SQLiteCommand("SELECT content FROM " + Language + " WHERE title='" + Key + "' LIMIT 1", setConn);
-            setReader = setCmd.ExecuteReader();
-            while (setReader.Read())
+            //SqlConn.Open();
+            SqlCmd = new SQLiteCommand("SELECT content FROM " + Language + " WHERE title='" + Key + "' LIMIT 1", SqlConn);
+            SqlReader = SqlCmd.ExecuteReader();
+            while (SqlReader.Read())
             {
-                settvalue = setReader["content"].ToString();
+                settvalue = SqlReader["content"].ToString();
             }
-            setConn.Close();
+            //SqlConn.Close();
             return settvalue;
         }
 
@@ -68,11 +69,11 @@ namespace vSongBook
         /// </summary>
         public void setValue(string Language, string Key, string Value)
         {
-            setConn.Open();
-            string sqlString = "UPDATE " + Language + " SET content='" + Value + "', updated='" + Todate() + "' WHERE title='" + Key + "'";
-            setCmd = new SQLiteCommand(sqlString, setConn);
-            setCmd.ExecuteNonQuery();
-            setConn.Close();
+            //SqlConn.Open();
+            string SqlString = "UPDATE " + Language + " SET content='" + Value + "', updated='" + Todate() + "' WHERE title='" + Key + "'";
+            SqlCmd = new SQLiteCommand(SqlString, SqlConn);
+            SqlCmd.ExecuteNonQuery();
+            //SqlConn.Close();
         }
 
         /// <summary>
@@ -80,11 +81,11 @@ namespace vSongBook
         /// </summary>
         public void setNew(string Language, string Key, string Value)
         {
-            setConn.Open();
-            setCmd = new SQLiteCommand("INSERT INTO " + Language + " (title, content, created) VALUES('" +
-                Key + "', '" + Value + "', '" + Todate() + "')", setConn);
-            setCmd.ExecuteNonQuery();
-            setConn.Close();
+            //SqlConn.Open();
+            SqlCmd = new SQLiteCommand("INSERT INTO " + Language + " (title, content, created) VALUES('" +
+                Key + "', '" + Value + "', '" + Todate() + "')", SqlConn);
+            SqlCmd.ExecuteNonQuery();
+            //SqlConn.Close();
         }
 
         public string Todate()
